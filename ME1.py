@@ -141,6 +141,15 @@ def two_a():
     new_src = replace_letter(new_src, 's', 'd') 
     new_src = replace_letter(new_src, 'k', 'v') 
     new_src = replace_letter(new_src, 'z', 'k') 
+
+    """
+        it is impossible for a cube to be the sum of two cubes, 
+        a fourth power to be the sum of two fourth powers, or in general
+        for any number that is a power greater than the second to be 
+        the sum of two like powers. i have discovered a truly marvelous 
+        demonstration of this proposition that this margin is too narrow 
+        to contain
+    """    
     
     return new_src
 

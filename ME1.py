@@ -19,6 +19,15 @@ CIPHER_TEXT_1 = """\
     x ald xct wkqv rpk.\
 """
 CIPHER_TEXT_1 = re.sub( '\s+', ' ', CIPHER_TEXT_1).strip()
+CIPHER_TEXT_2 = """
+    xi xh xbedhhxqat udg p rjqt id qt iwt hjb du ild rjqth, p udjgiw edltg
+    id qt iwt hjb du ild udjgiw edltgh, dg xc vtctgpa udg pcn cjbqtg iwpi
+    xh p edltg vgtpitg iwpc iwt htrdcs id qt iwt hjb du ild axzt edltgh. x
+    wpkt sxhrdktgts p igjan bpgktadjh stbdchigpixdc du iwxh egdedhxixdc
+    iwpi iwxh bpgvxc xh idd cpggdl id rdcipxc
+"""
+CIPHER_TEXT_2 = re.sub( '\s+', ' ', CIPHER_TEXT_2).strip()
+
 replaced_indexes = []
 
 
@@ -32,7 +41,6 @@ def get_letter_frequencies():
 
 get_letter_frequencies()
 
-# Run this to get 1A
 def get_cipher_text_letter_frequency(cipher_text):
     alphabet = string.ascii_lowercase
     letter_frequency_dict = {}
@@ -103,6 +111,36 @@ def one_b():
         gonna run around and desert you. never gonna make you cry, 
         never gonna say goodbye, never gonna tell a lie and hurt you.
     """
+
+    return new_src
+
+def two_a():
+    cipher_text_letter_frequency = get_cipher_text_letter_frequency(CIPHER_TEXT_2)
+    # print('Frequency: {}'.format(cipher_text_letter_frequency))
+    # print('Sorted by frequency: {}'.format(sort_by_frequency(cipher_text_letter_frequency)))
+
+    new_src = replace_letter(CIPHER_TEXT_2, 'p', 'a') 
+    new_src = replace_letter(new_src, 'x', 'i') 
+    new_src = replace_letter(new_src, 'd', 'o') 
+    new_src = replace_letter(new_src, 'i', 't') 
+    new_src = replace_letter(new_src, 'l', 'w') 
+    new_src = replace_letter(new_src, 'u', 'f') 
+    new_src = replace_letter(new_src, 'h', 's') 
+    new_src = replace_letter(new_src, 'w', 'h') 
+    new_src = replace_letter(new_src, 'g', 'r') 
+    new_src = replace_letter(new_src, 't', 'e') 
+    new_src = replace_letter(new_src, 'q', 'b') 
+    new_src = replace_letter(new_src, 'j', 'u') 
+    new_src = replace_letter(new_src, 'a', 'l') 
+    new_src = replace_letter(new_src, 'b', 'm') 
+    new_src = replace_letter(new_src, 'e', 'p') 
+    new_src = replace_letter(new_src, 'r', 'c') 
+    new_src = replace_letter(new_src, 'c', 'n') 
+    new_src = replace_letter(new_src, 'v', 'g') 
+    new_src = replace_letter(new_src, 'n', 'y') 
+    new_src = replace_letter(new_src, 's', 'd') 
+    new_src = replace_letter(new_src, 'k', 'v') 
+    new_src = replace_letter(new_src, 'z', 'k') 
     
     return new_src
 
@@ -110,7 +148,11 @@ def one_b():
 if __name__ == '__main__':
     one_a = get_cipher_text_letter_frequency(CIPHER_TEXT_1)
     one_b = one_b()
+    replaced_indexes = []
+    
+    two_a = two_a()
 
     print('(1A) {}\n'.format(one_a))
     print('(1B) {}\n'.format(one_b))
+    print('(2A) {}\n'.format(two_a))
 

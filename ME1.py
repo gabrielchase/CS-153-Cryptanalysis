@@ -74,35 +74,44 @@ def sort_by_frequency(data):
 
     return sorted_list
 
+def apply_new_key(cipher_text, new_key):
+    decypher_text = cipher_text
+    for key, val in new_key.items():
+        decypher_text = replace_letter(decypher_text, key, val)
+    
+    return decypher_text
+
 def one_b():
     cipher_text_letter_frequency = get_cipher_text_letter_frequency(CIPHER_TEXT_1)
 
-    new_src = replace_letter(CIPHER_TEXT_1, 'l', 'i') 
-    new_src = replace_letter(new_src, 'v', 't') 
-    new_src = replace_letter(new_src, 'o', 'm') 
-    new_src = replace_letter(new_src, 'd', 'e') 
-    new_src = replace_letter(new_src, 'p', 'o') 
-    new_src = replace_letter(new_src, 'g', 'v') 
-    new_src = replace_letter(new_src, 'y', 'c') 
-    new_src = replace_letter(new_src, 'c', 'n') 
-    new_src = replace_letter(new_src, 'w', 'h') 
-    new_src = replace_letter(new_src, 'z', 's') 
-    new_src = replace_letter(new_src, 'u', 'g')
-    new_src = replace_letter(new_src, 'b', 'k') 
-    new_src = replace_letter(new_src, 'm', 'f') 
-    new_src = replace_letter(new_src, 'a', 'l') 
-    new_src = replace_letter(new_src, 'e', 'w') 
-    new_src = replace_letter(new_src, 'x', 'a') 
-    new_src = replace_letter(new_src, 'k', 'u') 
-    new_src = replace_letter(new_src, 'r', 'y') 
-    new_src = replace_letter(new_src, 'q', 'r') 
-    new_src = replace_letter(new_src, 'm', 'v') 
-    new_src = replace_letter(new_src, 't', 'd') 
-    new_src = replace_letter(new_src, 'q', 'r') 
-    new_src = replace_letter(new_src, 'n', 'b') 
-    new_src = replace_letter(new_src, 'i', 'p') 
-    new_src = replace_letter(new_src, 'q', 'r') 
-    
+    new_key = {
+        'v': 't',
+        'v': 't',
+        'o': 'm',
+        'd': 'e',
+        'p': 'o',
+        'g': 'v',
+        'y': 'c',
+        'c': 'n',
+        'w': 'h',
+        'z': 's',
+        'u': 'g',
+        'b': 'k',
+        'm': 'f',
+        'a': 'l',
+        'e': 'w',
+        'x': 'a',
+        'k': 'u',
+        'r': 'y',
+        'q': 'r',
+        'm': 'v',
+        't': 'd',
+        'q': 'r',
+        'n': 'b',
+        'i': 'p',
+        'q': 'r',
+    }
+
     """
         we’re no strangers to love. you know the rules and so do i. 
         a full commitment is what i’m thinking of. you wouldn’t get 
@@ -116,33 +125,35 @@ def one_b():
         never gonna say goodbye, never gonna tell a lie and hurt you.
     """
 
-    return new_src
+    return apply_new_key(CIPHER_TEXT_1, new_key)
 
 def two_a():
     cipher_text_letter_frequency = get_cipher_text_letter_frequency(CIPHER_TEXT_2)
 
-    new_src = replace_letter(CIPHER_TEXT_2, 'p', 'a') 
-    new_src = replace_letter(new_src, 'x', 'i') 
-    new_src = replace_letter(new_src, 'd', 'o') 
-    new_src = replace_letter(new_src, 'i', 't') 
-    new_src = replace_letter(new_src, 'l', 'w') 
-    new_src = replace_letter(new_src, 'u', 'f') 
-    new_src = replace_letter(new_src, 'h', 's') 
-    new_src = replace_letter(new_src, 'w', 'h') 
-    new_src = replace_letter(new_src, 'g', 'r') 
-    new_src = replace_letter(new_src, 't', 'e') 
-    new_src = replace_letter(new_src, 'q', 'b') 
-    new_src = replace_letter(new_src, 'j', 'u') 
-    new_src = replace_letter(new_src, 'a', 'l') 
-    new_src = replace_letter(new_src, 'b', 'm') 
-    new_src = replace_letter(new_src, 'e', 'p') 
-    new_src = replace_letter(new_src, 'r', 'c') 
-    new_src = replace_letter(new_src, 'c', 'n') 
-    new_src = replace_letter(new_src, 'v', 'g') 
-    new_src = replace_letter(new_src, 'n', 'y') 
-    new_src = replace_letter(new_src, 's', 'd') 
-    new_src = replace_letter(new_src, 'k', 'v') 
-    new_src = replace_letter(new_src, 'z', 'k') 
+    new_key = {
+        'p': 'a',
+        'x': 'i',
+        'd': 'o',
+        'i': 't',
+        'l': 'w',
+        'u': 'f',
+        'h': 's',
+        'w': 'h',
+        'g': 'r',
+        't': 'e',
+        'q': 'b',
+        'j': 'u',
+        'a': 'l',
+        'b': 'm',
+        'e': 'p',
+        'r': 'c',
+        'c': 'n',
+        'v': 'g',
+        'n': 'y',
+        's': 'd',
+        'k': 'v',
+        'z': 'k',
+    }
 
     """
         it is impossible for a cube to be the sum of two cubes, 
@@ -153,39 +164,41 @@ def two_a():
         to contain
     """    
     
-    return new_src
+    return apply_new_key(CIPHER_TEXT_2, new_key)
 
 def three_a():
     cipher_text_letter_frequency = get_cipher_text_letter_frequency(CIPHER_TEXT_3)
-    
-    new_src = replace_letter(CIPHER_TEXT_3, 'p', 'a') 
-    new_src = replace_letter(new_src, 't', 'i') 
-    new_src = replace_letter(new_src, 's', 't') 
-    new_src = replace_letter(new_src, 'l', 's') 
-    new_src = replace_letter(new_src, 'c', 'n') 
-    new_src = replace_letter(new_src, 'j', 'o') 
-    new_src = replace_letter(new_src, 'm', 'h') 
-    new_src = replace_letter(new_src, 'r', 'e') 
-    new_src = replace_letter(new_src, 'k', 'd') 
-    new_src = replace_letter(new_src, 'o', 'l') 
-    new_src = replace_letter(new_src, 'z', 'u') 
-    new_src = replace_letter(new_src, 'y', 'f') 
-    new_src = replace_letter(new_src, 'h', 'k') 
-    new_src = replace_letter(new_src, 'n', 'w') 
-    new_src = replace_letter(new_src, 'b', 'y') 
-    new_src = replace_letter(new_src, 'd', 'c') 
-    new_src = replace_letter(new_src, 'e', 'r') 
-    new_src = replace_letter(new_src, 'f', 'g') 
-    new_src = replace_letter(new_src, 'q', 'p') 
-    new_src = replace_letter(new_src, 'v', 'm') 
-    new_src = replace_letter(new_src, 'w', 'b') 
 
+    new_key = {
+        'p': 'a',
+        't': 'i',
+        's': 't',
+        'l': 's',
+        'c': 'n',
+        'j': 'o',
+        'm': 'h',
+        'r': 'e',
+        'k': 'd',
+        'o': 'l',
+        'z': 'u',
+        'y': 'f',
+        'h': 'k',
+        'n': 'w',
+        'b': 'y',
+        'd': 'c',
+        'e': 'r',
+        'f': 'g',
+        'q': 'p',
+        'v': 'm',
+        'w': 'b',
+    }
+    
     """ 
         it is a useless life that is not consecrated to a great ideal. 
         it is like a stone wasted on the field without becoming a part of any edifice.
     """
 
-    return new_src
+    return apply_new_key(CIPHER_TEXT_3, new_key)
 
 
 if __name__ == '__main__':

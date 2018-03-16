@@ -1,19 +1,25 @@
 import csv
-from decimal import *
 import string
+import re
+
+from decimal import *
 
 LETTER_FREQUENCIES = {}
-CIPHER_TEXT_1 = """ed’qd cp zvqxcudqz vp apgd. rpk bcpe vwd qkadz xct zp tp l. x mkaa
-ypoolvodcv lz ewxv l’o vwlcblcu pm. rpk epkatc’v udv vwlz mqpo xcr
-pvwdq ukr. l jkzv excv vp vdaa rpk wpe l’o mddalcu. l upv vp oxbd
-rpk kctdqzvxct.
-ed’gd bcpec dxyw pvwdq mpq zp apcu. rpkq wdxqv’z nddc xywlcu, nkv
-rpk’qd vpp zwr vp zxr lv. lczltd, ed npvw bcpe ewxv’z nddc uplcu pc.
-ed bcpe vwd uxod xct ed’qd upccx iaxr lv. xct lm rpk xzb od wpe l’o
-mddalcu, tpc’v vdaa od rpk’qd vpp nalct vp zdd. cdgdq upccx ulgd rpk
-ki, cdgdq upccx adv rpk tpec, cdgdq upccx qkc xqpkct xct tdzdqv rpk.
-cdgdq upccx oxbd rpk yqr, cdgdq upccx zxr upptnrd, cdgdq upccx vdaa
-x ald xct wkqv rpk."""
+CIPHER_TEXT_1 = """\
+    ed’qd cp zvqxcudqz vp apgd. rpk bcpe vwd qkadz xct zp tp l. x mkaa
+    ypoolvodcv lz ewxv l’o vwlcblcu pm. rpk epkatc’v udv vwlz mqpo xcr
+    pvwdq ukr. l jkzv excv vp vdaa rpk wpe l’o mddalcu. l upv vp oxbd
+    rpk kctdqzvxct.
+    ed’gd bcpec dxyw pvwdq mpq zp apcu. rpkq wdxqv’z nddc xywlcu, nkv
+    rpk’qd vpp zwr vp zxr lv. lczltd, ed npvw bcpe ewxv’z nddc uplcu pc.
+    ed bcpe vwd uxod xct ed’qd upccx iaxr lv. xct lm rpk xzb od wpe l’o
+    mddalcu, tpc’v vdaa od rpk’qd vpp nalct vp zdd. cdgdq upccx ulgd rpk
+    ki, cdgdq upccx adv rpk tpec, cdgdq upccx qkc xqpkct xct tdzdqv rpk.
+    cdgdq upccx oxbd rpk yqr, cdgdq upccx zxr upptnrd, cdgdq upccx vdaa
+    x ald xct wkqv rpk.\
+"""
+CIPHER_TEXT_1 = re.sub( '\s+', ' ', CIPHER_TEXT_1).strip()
+replaced_indexes = []
 
 
 def get_letter_frequencies():
@@ -24,6 +30,9 @@ def get_letter_frequencies():
             if len(letter) == 1:
                 LETTER_FREQUENCIES[letter.lower()] = Decimal(percentage)
 
+get_letter_frequencies()
+
+# Run this to get 1A
 def get_cipher_text_letter_frequency(cipher_text):
     alphabet = string.ascii_lowercase
     letter_frequency_dict = {}
@@ -34,8 +43,74 @@ def get_cipher_text_letter_frequency(cipher_text):
     return letter_frequency_dict
 
 def replace_letter(source, before, after):
-    return source.replace(before, after)
+    new_src = source
+    
+    for idx, ch in enumerate(new_src):
+        if ch == before and idx not in replaced_indexes:
+            new_src = new_src[:idx] + after + new_src[idx + 1:]
+            replaced_indexes.append(idx)
 
-# get_letter_frequencies()
-# print(get_cipher_text_letter_frequency(CIPHER_TEXT_1))
-# print(replace_letter(CIPHER_TEXT_1, 'e', 'f'))
+    return new_src
+
+def sort_by_frequency(data):
+    sorted_list = {}
+    
+    for key, val in sorted(data.items(), key=lambda x:x[1], reverse=True):
+        sorted_list[key] = val
+
+    return sorted_list
+
+def one_b():
+    cipher_text_letter_frequency = get_cipher_text_letter_frequency(CIPHER_TEXT_1)
+    # print('Frequency: {}'.format(cipher_text_letter_frequency))
+    # print('Sorted by frequency: {}'.format(sort_by_frequency(cipher_text_letter_frequency)))
+
+    new_src = replace_letter(CIPHER_TEXT_1, 'l', 'i') #good
+    new_src = replace_letter(new_src, 'v', 't') #good
+    new_src = replace_letter(new_src, 'o', 'm') #good
+    new_src = replace_letter(new_src, 'd', 'e') #good
+    new_src = replace_letter(new_src, 'p', 'o') #good
+    new_src = replace_letter(new_src, 'g', 'v') #good
+    new_src = replace_letter(new_src, 'y', 'c') #good
+    new_src = replace_letter(new_src, 'c', 'n') #good
+    new_src = replace_letter(new_src, 'w', 'h') #good
+    new_src = replace_letter(new_src, 'z', 's') #partial
+    new_src = replace_letter(new_src, 'u', 'g') 
+    new_src = replace_letter(new_src, 'b', 'k') 
+    new_src = replace_letter(new_src, 'm', 'f') 
+    new_src = replace_letter(new_src, 'a', 'l') 
+    new_src = replace_letter(new_src, 'e', 'w') 
+    new_src = replace_letter(new_src, 'x', 'a') 
+    new_src = replace_letter(new_src, 'k', 'u') 
+    new_src = replace_letter(new_src, 'r', 'y') 
+    new_src = replace_letter(new_src, 'q', 'r') 
+    new_src = replace_letter(new_src, 'm', 'v') 
+    new_src = replace_letter(new_src, 't', 'd') 
+    new_src = replace_letter(new_src, 'q', 'r') 
+    new_src = replace_letter(new_src, 'n', 'b') 
+    new_src = replace_letter(new_src, 'i', 'p') 
+    new_src = replace_letter(new_src, 'q', 'r') 
+    
+    """
+        we’re no strangers to love. you know the rules and so do i. 
+        a full commitment is what i’m thinking of. you wouldn’t get 
+        this from any other guy. i just want to tell you how i’m feeling. 
+        i got to make you understand. we’ve known each other for so long. 
+        your heart’s been aching, but you’re too shy to say it. inside, we 
+        both know what’s been going on. we know the game and we’re gonna play it. 
+        and if you ask me how i’m feeling, don’t tell me you’re too blind to see. 
+        never gonna give you up, never gonna let you down, never 
+        gonna run around and desert you. never gonna make you cry, 
+        never gonna say goodbye, never gonna tell a lie and hurt you.
+    """
+    
+    return new_src
+
+
+if __name__ == '__main__':
+    one_a = get_cipher_text_letter_frequency(CIPHER_TEXT_1)
+    one_b = one_b()
+
+    print('(1A) {}\n'.format(one_a))
+    print('(1B) {}\n'.format(one_b))
+

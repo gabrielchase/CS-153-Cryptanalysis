@@ -86,7 +86,6 @@ def one_b():
 
     new_key = {
         'v': 't',
-        'v': 't',
         'o': 'm',
         'd': 'e',
         'p': 'o',
@@ -192,7 +191,7 @@ def three_a():
         'v': 'm',
         'w': 'b',
     }
-    
+
     """ 
         it is a useless life that is not consecrated to a great ideal. 
         it is like a stone wasted on the field without becoming a part of any edifice.
